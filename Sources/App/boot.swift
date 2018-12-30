@@ -9,9 +9,13 @@ public func boot(_ app: Application) throws {
     
     let fisURLString = "ftp://ftp.fisski.com/Software/Files/Fislist/ALFP919F.zip"
     if let fisURL = URL(string: fisURLString) {
+        
         /// Download file via FTP
+        logger.info("starting to download data from URL")
         let data = try Data(contentsOf: fisURL)
+        logger.info("Completed download of data from URL")
         if #available(OSX 10.12, *) {
+            logger.info("will attempt to write to disk")
             try data.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("vaporTestDownload.zip"))
             logger.info("finished writing ftp download to disk")
         } else {
