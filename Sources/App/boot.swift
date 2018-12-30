@@ -14,6 +14,8 @@ public func boot(_ app: Application) throws {
         logger.info("starting to download data from URL")
         let data = try Data(contentsOf: fisURL)
         logger.info("Completed download of data from URL")
+        
+        ///testing
         if #available(OSX 10.12, *) {
             logger.info("will attempt to write to disk")
             try data.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("vaporTestDownload.zip"))
