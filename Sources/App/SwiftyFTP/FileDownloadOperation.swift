@@ -8,8 +8,8 @@ internal class FileDownloadOperation: ReadStreamOperation {
     var progressHandler: DownloadProgressHandler?
     
     override func start() {
-//        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(path )
-        let filePath = "/Users/justinsamuels/ALFP919F.zip"
+        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(path )
+//        let filePath = "/Users/justinsamuels/ALFP919F.zip"
         let fileURL = URL(fileURLWithPath: filePath)
         print("will attempt to write to \(fileURL)")
         self.fileURL = fileURL
@@ -63,13 +63,13 @@ internal class FileDownloadOperation: ReadStreamOperation {
                     totalData.append(UnsafePointer<UInt8>(temporaryBuffer), count: parsedBytes)
                 }
             }else{
-                do {
-                    print("will attempt to use alternate write method")
-                    try totalData.write(to: URL(fileURLWithPath: "/Users/justinsamuels/ALFP919F-1.zip"))
-                    print("completed alternate write method")
-                }catch{
-                    print("error writing data to disk: \(error)")
-                }
+//                do {
+//                    print("will attempt to use alternate write method")
+//                    try totalData.write(to: URL(fileURLWithPath: "/Users/justinsamuels/ALFP919F-1.zip"))
+//                    print("completed alternate write method")
+//                }catch{
+//                    print("error writing data to disk: \(error)")
+//                }
             }
         } while (parsedBytes > 0)
         return (true, nil)
