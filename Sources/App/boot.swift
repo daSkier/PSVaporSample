@@ -10,6 +10,6 @@ public func boot(_ app: Application) throws {
     print("starting download")
     session.download("/Software/Files/Fislist/ALFP919F.zip") {
         (fileURL, error) -> Void in
-        print("Download file with result:\n\(fileURL), error: \(error)\n\n")
+        print("Download file with result:\n\(String(describing: fileURL)), error: \(String(describing: error))\n\n")
     }
 }

@@ -29,7 +29,7 @@ internal class StreamOperation: Operation, StreamDelegate {
         return configuration.url.appendingPathComponent(path)
     }
     
-    @objc func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         if isCancelled {
             streamEventError(aStream)
             error = NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError, userInfo: nil)
