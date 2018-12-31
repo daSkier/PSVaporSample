@@ -1,4 +1,5 @@
 import Vapor
+import CCurl
 
 /// Register your application's routes here.
 public func routes(_ router: Router) throws {
@@ -13,4 +14,16 @@ public func routes(_ router: Router) throws {
             "name": req.parameters.next(String.self)
         ])
     }
+    
+//    router.get("updatedLists") { req -> Future<Int> in
+//        
+//        let logger = try req.make(Logger.self)
+//        logger.info("testing the logging system")
+//        
+//        let fisURLString = "ftp://ftp.fisski.com/Software/Files/Fislist/ALFP919F.zip"
+//        if let fisURL = URL(string: fisURLString) {
+//         return try
+//        }
+//        return try
+//    }
 }
