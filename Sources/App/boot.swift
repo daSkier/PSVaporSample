@@ -24,7 +24,7 @@ public func boot(_ app: Application) throws {
 //    curl_easy_setopt(curl, CURLOPT_URL, "ftp://ftp.fisski.com/Software/Files/Fislist/ALFP919F.zip")
     curlHelperSetOptString(curl, CURLOPT_URL, UnsafePointer("ftp://ftp.fisski.com/Software/Files/Fislist/ALFP919F.zip".cString(using: .utf8)))
     print("creating data object")
-    let data = Data()
+//    var data = Data()
     var data2 = NSMutableData()
     print("created data object")
     
@@ -32,10 +32,18 @@ public func boot(_ app: Application) throws {
         print("created unsafeMutablePointer")
         curlHelperSetOptWriteFunc(curl, ptr) { (buf: UnsafeMutablePointer<Int8>?, size: Int, nMemb: Int, privateData: UnsafeMutableRawPointer?) -> Int in
             print("attempting to save buffer to mutable data")
+            
+            ///NSMutableData implementation
             let p = privateData?.assumingMemoryBound(to: NSMutableData.self).pointee
             p?.append((UnsafeRawPointer(buf)?.assumingMemoryBound(to: UInt8.self))!, length: size*nMemb)
             print("attempted to save buffer to mutable data")
             print("lenght of mutable data: \(p?.length)")
+            
+            ///Data implementation
+//            var p = privateData?.assumingMemoryBound(to: Data.self).pointee
+//            p?.append((UnsafeRawPointer(buf)?.assumingMemoryBound(to: UInt8.self))!, count: nMemb)
+//            print("attempted to save buffer to data")
+//            print("length of data: \(p?.count)")
             return size*nMemb
         }
     }
@@ -46,12 +54,14 @@ public func boot(_ app: Application) throws {
         print("there was an issue with the curl request: curl_easy_perform() error: \(curl_easy_strerror(res))")
     }else {
         print("apparently this was a success and mutableData.length = \(data2.length)")
+//        print("apparently this was a success and data.count = \(data.count)")
     }
     
     curl_easy_cleanup(curl)
     
     if #available(OSX 10.12, *) {
-        data2.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData.zip"), atomically: true)
+        data2.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"), atomically: true)
+//        try data.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"))
     } else {
         // Fallback on earlier versions
     }
