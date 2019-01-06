@@ -9,8 +9,7 @@ let package = Package(
 
         // 🍃 An expressive, performant, and extensible templating language built for Swift.
         .package(url: "https://github.com/vapor/leaf.git", from: "3.0.0"),
-        .package(url: "https://github.com/IBM-Swift/CCurl.git", from: "1.0.0"),
-//        .package(url: "https://github.com/alexsteinerde/SwiftyFTP.git", from: "1.0.0")
+        .package(url: "https://github.com/IBM-Swift/CCurl.git", from: "1.0.0")
     ],
     targets: [
         .target(name: "App", dependencies: ["Leaf", "Vapor", "CCurl"]),
