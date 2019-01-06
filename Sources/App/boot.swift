@@ -59,12 +59,12 @@ public func boot(_ app: Application) throws {
     
     curl_easy_cleanup(curl)
     
-    if #available(OSX 10.12, *) {
-        data2.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"), atomically: true)
-//        try data.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"))
-    } else {
-        // Fallback on earlier versions
-    }
+//    if #available(OSX 10.12, *) {
+//        data2.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"), atomically: true)
+////        try data.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"))
+//    } else {
+//        // Fallback on earlier versions
+//    }
     
 //    curlHelperSetOptWriteFunc(curl, ptr) { (buf: UnsafeMutablePointer<Int8>?, size: Int, nMemb: Int, privateData: UnsafeMutableRawPointer?) -> Int in
 //
