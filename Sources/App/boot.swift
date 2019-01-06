@@ -5,6 +5,9 @@ import CCurl
 public func boot(_ app: Application) throws {
     // your code here
     
+    let logger = try app.make(Logger.self)
+    logger.info("testing the logging system")
+    
 //    var configuration = SessionConfiguration()
 //    configuration.host = "ftp://ftp.fisski.com:21"
 //    let session = Session(configuration: configuration)
@@ -41,7 +44,7 @@ public func boot(_ app: Application) throws {
             
             ///Data implementation
 //            var p = privateData?.assumingMemoryBound(to: Data.self).pointee
-//            p?.append((UnsafeRawPointer(buf)?.assumingMemoryBound(to: UInt8.self))!, count: nMemb)
+//            p?.append((UnsafeRawPointer(buf)?.assumingMemoryBound(to: UInt8.self))!, count: size*nMemb)
 //            print("attempted to save buffer to data")
 //            print("length of data: \(p?.count)")
             return size*nMemb
@@ -59,12 +62,12 @@ public func boot(_ app: Application) throws {
     
     curl_easy_cleanup(curl)
     
-//    if #available(OSX 10.12, *) {
-//        data2.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"), atomically: true)
-////        try data.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"))
-//    } else {
-//        // Fallback on earlier versions
-//    }
+    if #available(OSX 10.12, *) {
+        data2.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData2.zip"), atomically: true)
+//        try data.write(to: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("curlData.zip"))
+    } else {
+        // Fallback on earlier versions
+    }
     
 //    curlHelperSetOptWriteFunc(curl, ptr) { (buf: UnsafeMutablePointer<Int8>?, size: Int, nMemb: Int, privateData: UnsafeMutableRawPointer?) -> Int in
 //
